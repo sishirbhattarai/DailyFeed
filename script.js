@@ -1,14 +1,15 @@
 // Our JavaScript goes here
-var zomatoCityID = "1213";
-var zomatoQuery = "Sushi";
-var zomatoLat = "40.75952";
-var zomatoLon = "-111.888229";
+var zomatoCityID = "";
+var zomatoQuery = "";
+var zomatoLat = "";
+var zomatoLon = "";
 
 var zomatoURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + zomatoCityID + "&entity_type=city&q=" + zomatoQuery + "&count=10&lat=" + zomatoLat + "&lon=" + zomatoLon + "&radius=10000&sort=rating&order=desc";
 var weatherbitURL = "";
 var uberURL = "";
 
-
+var zomSearch = $("#search-btn");
+var zomInput = $("#zomatoInput").val();
 
 $.ajax({
     header: {
@@ -20,10 +21,12 @@ $.ajax({
     console.log(response)
 });
 
-$("#search-btn").on('click', function(event) {
+$(zomSearch).on('click', function(event) {
     event.preventDefault();
-});
+    zomSearch = zomInput;
+})
 
 function zomatoSearch () {
 
 }
+zomatoSearch();

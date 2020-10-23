@@ -12,6 +12,10 @@ var uberURL = "";
 var zomSearch = $("#search-btn");
 var zomInput = $("#zomatoInput").val();
 
+var locationBtn = $("#location-btn");
+var cityEl = $("#location");
+
+
 $.ajax({
     header: {
         'user-key': '54aedad9a5cf457cabacf6702d606833'
@@ -25,9 +29,43 @@ $.ajax({
 $(zomSearch).on('click', function(event) {
     event.preventDefault();
     zomSearch = zomInput;
-})
+});
 
 function zomatoSearch () {
 
-}
+};
 zomatoSearch();
+
+var userLat;
+var userLong;
+var mapURL;
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        locationEl.innerHTML = "Geolocation is not supported by this browser.";
+    };
+};
+    
+function showPosition(position) {
+    userLat = position.coords.latitude;
+    userLong = position.coords.longitude;
+    mapURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=jHLf4uATR4fijVkLOmrimhIJE79Xp0kx&location=" + userLat + "," + userLong
+};
+getLocation();
+
+// This ajax must run AFTER user allows geolocation; that's why it's behind a button
+locationBtn.on('click', function() {
+
+    $.ajax({
+        header: {
+            'user-key': 'jHLf4uATR4fijVkLOmrimhIJE79Xp0kx'
+        },
+        url: mapURL,
+        method: "GET"
+    }).then(function(response) {
+        cityEl.text("You live in " + (response.results[0].locations[0].adminArea5) + ".");
+    });
+})

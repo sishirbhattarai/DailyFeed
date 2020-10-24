@@ -17,7 +17,7 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition)
     } else {
-        locationEl.innerHTML = "Geolocation is not supported by this browser.";
+        cityEl.text("Geolocation is not supported by the browser.")
     };
 };
 

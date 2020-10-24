@@ -11,6 +11,9 @@ var uberURL = "";
 var zomSearch = $("#search-btn");
 var zomInput = $("#zomatoInput").val().trim();
 
+var locationBtn = $("#location-btn");
+var cityEl = $("#location");
+
 function zomatoCall () {
     var zomatoURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + zomatoCityID + "&entity_type=city&q=" + zomatoQuery + "&count=10&lat=" + zomatoLat + "&lon=" + zomatoLon + "&radius=10000&sort=rating&order=desc";
     $.ajax({

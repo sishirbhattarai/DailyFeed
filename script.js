@@ -13,14 +13,18 @@ var mapURL;
 
 // Covid19API Global Variables
 
+// Asks permission to get user's location data
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.getCurrentPosition(showPosition, function() {
+            cityEl.text("Please refresh the page and allow location services for the app to function properly.")
+        });
     } else {
         cityEl.text("Geolocation is not supported by the browser.")
     };
 };
 
+// If user gives location permission, coords are sent to mapquest API
 function showPosition(position) {
     userLat = position.coords.latitude;
     userLong = position.coords.longitude;

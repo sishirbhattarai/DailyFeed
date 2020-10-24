@@ -10,7 +10,8 @@ var userLat;
 var userLong;
 var mapURL;
 // GuardianAPI Global Variables
-var guardianURL = "https://content.guardianapis.com/search?api-key=199bdec0-409f-48d7-a79a-6ff10791c23e";
+var guardianSearch = "";
+var guardianURL = "https://content.guardianapis.com/search?q=" + guardianSearch + "&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e";
 // Covid19API Global Variables
 
 function callGuardian () {
@@ -21,6 +22,7 @@ function callGuardian () {
         console.log(response);
     })
 }
+callGuardian();
 
 function getLocation() {
     if (navigator.geolocation) {

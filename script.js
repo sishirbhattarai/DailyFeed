@@ -24,26 +24,21 @@ function callGuardian () {
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition)
     } else {
-        locationEl.innerHTML = "Geolocation is not supported by this browser.";
+        cityEl.text("Geolocation is not supported by the browser.")
     };
 };
 
 function showPosition(position) {
     userLat = position.coords.latitude;
     userLong = position.coords.longitude;
-    mapURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=jHLf4uATR4fijVkLOmrimhIJE79Xp0kx&location=" + userLat + "," + userLong
-};
-getLocation();
-
-// This ajax must run AFTER user allows geolocation; that's why it's behind a button
-locationBtn.on('click', function () {
-
+    mapURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=jHLf4uATR4fijVkLOmrimhIJE79Xp0kx&location=" + userLat + "," + userLong;
     $.ajax({
         url: mapURL,
         method: "GET"
     }).then(function (response) {
         cityEl.text("You live in " + (response.results[0].locations[0].adminArea5) + ".");
     });
-})
+};
+getLocation();

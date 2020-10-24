@@ -12,22 +12,23 @@ var uberURL = "";
 var zomSearch = $("#search-btn");
 var zomInput = $("#zomatoInput").val();
 
-$.ajax({
-    header: {
-        'user-key': '54aedad9a5cf457cabacf6702d606833'
-    },
-    url: zomatoURL,
-    method: "GET"
-}).then(function (response) {
-    console.log(response)
-});
 
-$(zomSearch).on('click', function(event) {
+$(zomSearch).on('click', function (event) {
     event.preventDefault();
+    $.ajax({
+        header: {
+            'user-key': '54aedad9a5cf457cabacf6702d606833',
+            'Accept': 'application/json'
+        },
+        url: zomatoURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+    });
     zomSearch = zomInput;
 })
 
-function zomatoSearch () {
+function zomatoSearch() {
 
 }
 zomatoSearch();

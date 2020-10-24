@@ -14,6 +14,7 @@ var guardianSearch = "";
 var guardianURL = "https://content.guardianapis.com/search?q=" + guardianSearch + "&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e";
 // Covid19API Global Variables
 
+
 function callGuardian () {
     $.ajax({
         url: guardianURL,
@@ -24,14 +25,18 @@ function callGuardian () {
 }
 callGuardian();
 
+// Asks permission to get user's location data
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.getCurrentPosition(showPosition, function() {
+            cityEl.text("Please refresh the page and allow location services for the app to function properly.")
+        });
     } else {
         cityEl.text("Geolocation is not supported by the browser.")
     };
 };
 
+// If user gives location permission, coords are sent to mapquest API
 function showPosition(position) {
     userLat = position.coords.latitude;
     userLong = position.coords.longitude;

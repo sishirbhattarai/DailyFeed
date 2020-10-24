@@ -12,6 +12,9 @@ var uberURL = "";
 var zomSearch = $("#search-btn");
 var zomInput = $("#zomatoInput").val();
 
+var locationBtn = $("#location-btn");
+var cityEl = $("#location");
+
 function zomatoCall () {
     $.ajax({
         header: {

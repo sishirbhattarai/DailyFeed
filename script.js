@@ -1,9 +1,9 @@
 // Our JavaScript goes here
 // Zomato API Global Variables
-var zomatoCityID = "";
-var zomatoQuery = "";
-var zomatoLat = "";
-var zomatoLon = "";
+// var zomatoCityID = "";
+// var zomatoQuery = "";
+// var zomatoLat = "";
+// var zomatoLon = "";
 var zomSearch = $("#search-btn");
 var zomInput = "";
 // WeatherBit API
@@ -19,22 +19,20 @@ var userLong;
 var mapURL;
 
 function zomatoCall() {
-    var zomatoURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + zomatoCityID + "&entity_type=city&q=" + zomatoQuery + "&count=10&lat=" + zomatoLat + "&lon=" + zomatoLon + "&radius=10000&sort=rating&order=desc";
+    var zomatoURL = "https://developers.zomato.com/api/v2.1/cities?q=" + zomInput + "&apikey=54aedad9a5cf457cabacf6702d606833";
     $.ajax({
-        header: {
-            'user-key': '54aedad9a5cf457cabacf6702d606833',
-            'Accept': 'application/json'
-        },
         url: zomatoURL,
         method: "GET"
     }).then(function (response) {
         console.log(response);
+        
     });
 }
 
 $(zomSearch).on('click', function (event) {
     event.preventDefault();
     zomInput = $("#zomatoInput").val().trim();
+    
     zomatoCall();
 });
 

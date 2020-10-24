@@ -1,4 +1,4 @@
 # ProjectGreatness
-- This project will feature Zomato API, Uber API, and WeatherBit API to get the best local restaurants in the area, as well as get Uber information to get to a restaurant of choice.
+- This project will feature MapQuestAPI, AssociatedPressAPI, and WeatherBit API, and Covid19API to get the best relevant news and the weather, as well as updates on Covid19. This will be a breakfast companion app.
 
-- As a traveller, I want to find the best local restaurants available to me, get the latest weather update, as well as how much an Uber costs to get there.
+- As a traveller, I want to read the local news, and get the latest weather update. I want to be informed of Covid19 in my area.

@@ -3,14 +3,15 @@
 // WeatherBit API
 var weatherbitURL = "https://api.weatherbit.io/v2.0/current?city=" + weatherbitCity + "key=aa00598f57b74bddb364a7b526faf997";
 var weatherbitCity = "";
-// Uber API Global Variables
-var uberURL = "";
 // MapQuest API Global Variables
 var locationBtn = $("#location-btn");
 var cityEl = $("#location");
 var userLat;
 var userLong;
 var mapURL;
+// Associated Press API Global Variables
+
+// Covid19API Global Variables
 
 function getLocation() {
     if (navigator.geolocation) {

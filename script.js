@@ -9,9 +9,18 @@ var cityEl = $("#location");
 var userLat;
 var userLong;
 var mapURL;
-// Associated Press API Global Variables
-
+// GuardianAPI Global Variables
+var guardianURL = "https://content.guardianapis.com/search?api-key=199bdec0-409f-48d7-a79a-6ff10791c23e";
 // Covid19API Global Variables
+
+function callGuardian () {
+    $.ajax({
+        url: guardianURL,
+        method: "GET"
+    }).then(function(response){
+        console.log(response);
+    })
+}
 
 function getLocation() {
     if (navigator.geolocation) {

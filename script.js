@@ -45,7 +45,62 @@ function showPosition(position) {
         url: mapURL,
         method: "GET"
     }).then(function (response) {
-        cityEl.text("You live in " + (response.results[0].locations[0].adminArea5) + ".");
+        cityEl.text("Your current location is " + (response.results[0].locations[0].adminArea5) + "," + (response.results[0].locations[0].adminArea3) + ".");
+        console.log(response)
     });
 };
 getLocation();
+
+  navigator.geolocation.getCurrentPosition(success, error);
+
+  function success(position) {
+      console.log(position)
+  }
+  function error() {}
+  getWeather();
+
+  function getWeather() {
+  
+    navigator.geolocation.getCurrentPosition(success, error);
+
+    function success(position) {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+
+//Ajax call on weather
+  var queryURL = "https://api.weatherbit.io/v2.0/current" + "?lat=" + latitude + "&lon=" + longitude + "&key=b2da4d28d2ce4023b0d33cbef6a3f959";
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+      .then(function(response) {
+
+        console.log(response);
+
+        // Log the resulting object
+        console.log(response.data[0].temp);
+        var tempF = response.data[0].temp * 1.80 + 32;
+        var icon =  $("<img>").attr("src", "https://www.weatherbit.io/api/codes" + response.data[0].weather.icon + ".png")
+        //Console loging temperature on Farenheit
+        console.log(tempF);
+        $("#datetime").text(response.data[0].datetime);
+        $("#temperature").text("Temp: " + response.data[0].temp);
+        $("#temperature").text("Temp: " + tempF.toFixed(2) + "°F");
+        $("#description").text( response.data[0].weather.description);
+        $("#uv").text("UV Index: " + response.data[0].uv);
+        //$("#icon").text(imag);
+     
+        // var queryURL = "https://api.weatherbit.io/v2.0/current/airquality" + "?lat=" + latitude + "&lon=" + longitude + "&key=b2da4d28d2ce4023b0d33cbef6a3f959";
+        // $.ajax({
+        //   url: queryURL,
+        //   method: "GET"
+        // })
+        // .then(function(response) {
+  
+        //   console.log(response);
+  
+        //   // Log the resulting object
+        //  // console.log(response.data[0].temp);
+        // })
+      });
+    }}

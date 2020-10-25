@@ -1,71 +1,108 @@
 // Our JavaScript goes here
-var zomatoCityID = "";
-var zomatoQuery = "";
-var zomatoLat = "";
-var zomatoLon = "";
-var weatherbitCity = "";
 
-var zomatoURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + zomatoCityID + "&entity_type=city&q=" + zomatoQuery + "&count=10&lat=" + zomatoLat + "&lon=" + zomatoLon + "&radius=10000&sort=rating&order=desc";
+// WeatherBit API
 var weatherbitURL = "https://api.weatherbit.io/v2.0/current?city=" + weatherbitCity + "key=aa00598f57b74bddb364a7b526faf997";
-var uberURL = "";
-
-var zomSearch = $("#search-btn");
-var zomInput = $("#zomatoInput").val();
-
+var weatherbitCity = "";
+// MapQuest API Global Variables
 var locationBtn = $("#location-btn");
 var cityEl = $("#location");
-
-
-$.ajax({
-    header: {
-        'user-key': '54aedad9a5cf457cabacf6702d606833'
-    },
-    url: zomatoURL,
-    method: "GET"
-}).then(function (response) {
-    console.log(response)
-});
-
-$(zomSearch).on('click', function(event) {
-    event.preventDefault();
-    zomSearch = zomInput;
-});
-
-function zomatoSearch () {
-
-};
-zomatoSearch();
-
 var userLat;
 var userLong;
 var mapURL;
+// GuardianAPI Global Variables
+var guardianSearch = "";
+var guardianURL = "https://content.guardianapis.com/search?q=" + guardianSearch + "&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e";
+// Covid19API Global Variables
 
 
+function callGuardian () {
+    $.ajax({
+        url: guardianURL,
+        method: "GET"
+    }).then(function(response){
+        console.log(response);
+    })
+}
+callGuardian();
+
+// Asks permission to get user's location data
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        locationEl.innerHTML = "Geolocation is not supported by this browser.";
+        navigator.geolocation.getCurrentPosition(showPosition, function() {
+            cityEl.text("Please refresh the page and allow location services for the app to function properly.")
+        });
+    } else {
+        cityEl.text("Geolocation is not supported by the browser.")
     };
 };
-    
+
+// If user gives location permission, coords are sent to mapquest API
 function showPosition(position) {
     userLat = position.coords.latitude;
     userLong = position.coords.longitude;
-    mapURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=jHLf4uATR4fijVkLOmrimhIJE79Xp0kx&location=" + userLat + "," + userLong
+    mapURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=jHLf4uATR4fijVkLOmrimhIJE79Xp0kx&location=" + userLat + "," + userLong;
+    $.ajax({
+        url: mapURL,
+        method: "GET"
+    }).then(function (response) {
+        cityEl.text("Your current location is " + (response.results[0].locations[0].adminArea5) + "," + (response.results[0].locations[0].adminArea3) + ".");
+        console.log(response)
+    });
 };
 getLocation();
 
-// This ajax must run AFTER user allows geolocation; that's why it's behind a button
-locationBtn.on('click', function() {
+  navigator.geolocation.getCurrentPosition(success, error);
 
-    $.ajax({
-        header: {
-            'user-key': 'jHLf4uATR4fijVkLOmrimhIJE79Xp0kx'
-        },
-        url: mapURL,
+  function success(position) {
+      console.log(position)
+  }
+  function error() {}
+  getWeather();
+
+  function getWeather() {
+  
+    navigator.geolocation.getCurrentPosition(success, error);
+
+    function success(position) {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+
+//Ajax call on weather
+  var queryURL = "https://api.weatherbit.io/v2.0/current" + "?lat=" + latitude + "&lon=" + longitude + "&key=b2da4d28d2ce4023b0d33cbef6a3f959";
+      $.ajax({
+        url: queryURL,
         method: "GET"
-    }).then(function(response) {
-        cityEl.text("You live in " + (response.results[0].locations[0].adminArea5) + ".");
-    });
-})
+      })
+      .then(function(response) {
+
+        console.log(response);
+
+        // Log the resulting object
+        console.log(response.data[0].temp);
+        var tempF = response.data[0].temp * 1.80 + 32;
+        var icon =  $("<img>").attr("src", "https://www.weatherbit.io/api/codes" + response.data[0].weather.icon + ".png")
+        //Console loging temperature on Farenheit
+        console.log(tempF);
+        $("#datetime").text(response.data[0].datetime);
+        $("#temperature").text("Temp: " + response.data[0].temp);
+        $("#temperature").text("Temp: " + tempF.toFixed(2) + "°F");
+        $("#description").text( response.data[0].weather.description);
+        $("#uv").text("UV Index: " + response.data[0].uv);
+        //$("#icon").text(imag);
+     
+        // var queryURL = "https://api.weatherbit.io/v2.0/current/airquality" + "?lat=" + latitude + "&lon=" + longitude + "&key=b2da4d28d2ce4023b0d33cbef6a3f959";
+        // $.ajax({
+        //   url: queryURL,
+        //   method: "GET"
+        // })
+        // .then(function(response) {
+  
+        //   console.log(response);
+  
+        //   // Log the resulting object
+        //  // console.log(response.data[0].temp);
+        // })
+      });
+    }}
+
+   

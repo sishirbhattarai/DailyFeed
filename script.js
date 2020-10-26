@@ -41,6 +41,10 @@ searchBtn.on('click', function(event) {
             story.text(response.response.results[i].webTitle);
             articles.append(story);
         }
+
+        var spacerDiv = $("<div>")
+        spacerDiv.attr("style", "height: 4px");
+        articles.append(spacerDiv);
     });
 });
 

@@ -19,10 +19,16 @@ i {
 .card {
     margin-top: 30px;
     text-align: center;
+    border-color: midnightblue;
 }
 
 .card-header {
     font-size: xx-large;
+    color: midnightblue;
+}
+
+hr {
+    background-color: midnightblue;
 }
 
 #weather-Display {
@@ -36,4 +42,9 @@ i {
 
 #temperature {
     text-align: center;
+}
+
+#search-btn {
+    color: midnightblue;
+    border-color: midnightblue;
 }

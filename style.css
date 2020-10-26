@@ -1,84 +1,48 @@
-/* Our Custom CSS Goes Here */
-
-
-#search-btn {
-    border-color: white;
+#logo {
+    border-color: midnightblue;
     border-width: 1px;
+    background-color: white;
+    padding: 10px;
+}
+
+i {
+    color: midnightblue;
+}
+
+#project-name {
+    color: midnightblue;
+    margin: 0;
+    text-align: center;
+    padding-bottom: 5px;
 }
 
 .card {
-    border-color: black;
-    border-width: 2px;
     margin-top: 30px;
     text-align: center;
-    width: 80%;
-    
-    
 }
 
-#rest-uber-div {
-    height: 300px;
-    padding-top: 75px;
+.card-header {
+    font-size: xx-large;
 }
 
-#location-btn {
-    width: 20%;
-}
-
-#location {
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-family: monospace;
-}
-
-#weather-div {
-    background-color: white;
-    font-size: 2px;
-    background-color: lightgray;
-    }
-
-#rest-uber-div {
-        background-color: lightcyan;
-        }
-
-#weather-Display{
- 
- background-color: blue;
- margin-left: 19rem;
- width: 40%;
+#weather-Display {
  font-family: Verdana, Geneva, Tahoma, sans-serif;
- padding-top: 3%;
+ margin-bottom: 15px;
+}
 
+#temp-icon {
+    align-content: left;
 }
 
 #temperature {
-    font-size: 1.5rem;
-    color: white;
-    width: 100%;
     text-align: center;
 }
 
-#description{
-    font-size: 1.5rem;
-    color: white;
-    width: 100%;
+#search-btn {
+    color: midnightblue;
+    border-color: midnightblue;
 }
 
-#datetime {
-    font-size: 1.5rem;
-    color: white;
-    width: 100%;
+#articles {
+    text-align: left;
 }
-
-#uv{
-    font-size: 1.5rem;
-    color: white;
-    width: 100%;
-}
-
-h1{
-    font-size: 2rem;
-    font-weight: bolder;
-    font-family: fantasy;
-}
-

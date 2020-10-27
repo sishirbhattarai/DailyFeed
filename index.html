@@ -22,7 +22,7 @@
 
     <div class="row">
       
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div id="weather-div" class="card">
           
           <div id="weather-header" class="card-header">
@@ -47,8 +47,10 @@
 
         </div>
       </div>
-
-      <div class="col-md-6">
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
         <div id="news-div" class="card">
           
           <div id="news-header" class="card-header">
@@ -60,13 +62,12 @@
                 <input id="news-search" class="form-control mr-sm-2" type="text" placeholder="Search for a news topic" aria-label="Search">
                 <button id="search-btn" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
               </form>
-
-              <div id="articles" class="text-truncate"></div>
+              
+              <div id="articles"></div>
           </div>
 
         </div>
       </div>
-
     </div>
   </div>
   <!--Jquery comes before Bootstrap bundle, our script doc last-->

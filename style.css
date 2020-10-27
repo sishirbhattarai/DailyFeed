@@ -46,3 +46,13 @@ i {
 #articles {
     text-align: left;
 }
+
+#guardian-img {
+    width: 100px;
+    margin-right: 15px;
+}
+
+.guardian-headline {
+    font-weight: 500;
+    font-size: x-large;
+}

@@ -17,7 +17,6 @@ var userLat;
 var userLong;
 // GuardianAPI Global Variables
 var guardianSearch;
-var guardianURL = "https://content.guardianapis.com/search?q=" + guardianSearch + "&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e";
 var searchBtn = $("#search-btn");
 var articles = $("#articles");
 // Covid19API Global Variables
@@ -25,26 +24,29 @@ var articles = $("#articles");
 
 searchBtn.on('click', function(event) {
     event.preventDefault();
-    guardianSearch = $("#news-search").val();
+    guardianSearch = $("#news-search").val().trim();
     articles.empty();
     console.log(guardianSearch);
+    var guardianFields = "&show-fields=headline,thumbnail";
     $.ajax({
-        url: "https://content.guardianapis.com/search?q=" + guardianSearch + "&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e",
+        url: "https://content.guardianapis.com/search?q=" + guardianSearch + guardianFields + "&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e",
         method: "GET"
     }).then(function(response){
         console.log(response);
         console.log(response.response.results[0]);
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 5; i++) {
             articles.append("<hr>");
             var story = $("<a>");
-            story.attr("href", response.response.results[i].webUrl);
-            story.text(response.response.results[i].webTitle);
-            articles.append(story);
+            story.attr({
+                href: response.response.results[i].webUrl,
+                class: "guardian-headline"});
+            var guardianImg = $("<img>");
+            guardianImg.attr({
+                src: response.response.results[i].fields.thumbnail,
+                id: "guardian-img"});
+            story.text(response.response.results[i].fields.headline);
+            articles.append(guardianImg, story);
         }
-
-        var spacerDiv = $("<div>")
-        spacerDiv.attr("style", "height: 4px");
-        articles.append(spacerDiv);
     });
 });
 

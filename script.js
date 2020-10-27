@@ -69,6 +69,9 @@ function showPosition(position) {
         url: "http://www.mapquestapi.com/geocoding/v1/reverse?key=jHLf4uATR4fijVkLOmrimhIJE79Xp0kx&location=" + userLat + "," + userLong,
         method: "GET"
     }).then(function (response) {
+        var cityIcon = $("<i>");
+        cityIcon.addClass("fas fa-city");
+        cityEl.prepend(cityIcon + " ");
         cityEl.text((response.results[0].locations[0].adminArea5) + ", " + (response.results[0].locations[0].adminArea3));
         console.log(response);
         getWeather()

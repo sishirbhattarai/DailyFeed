@@ -1,7 +1,8 @@
 #logo {
     border-color: midnightblue;
     border-width: 1px;
-    background-color: white;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(16px);
     padding: 10px;
 }
 

@@ -95,11 +95,11 @@ function getWeather() {
             icon.addClass("fas fa-temperature-high");
             tempIcon.append(icon)
         };
-        tempDiv.append(" " + tempF.toFixed(2) + "° F");
+        tempDiv.append(" " + tempF.toFixed(0) + "° F");
         weatherImg.attr("src", "icons/" + response.data[0].weather.icon + ".png");
         weather.append(weatherImg);
         weather.append(response.data[0].weather.description);
         uvDiv.append(uvIcon);
-        uvDiv.append(" UV Index: " + response.data[0].uv.toFixed(2));
+        uvDiv.append(" UV Index: " + response.data[0].uv.toFixed(1));
     });
 }

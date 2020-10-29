@@ -18,7 +18,30 @@ $(document).ready(function () {
     var searchBtn = $("#search-btn");
     var articles = $("#articles");
     // Covid19API Global Variables
-
+    function loadNewsDoc () {
+        $.ajax({
+        url: "https://content.guardianapis.com/search?show-fields=headline,thumbnail&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e",
+        method: "GET"
+        }).then(function(response){
+        console.log(response);
+        for (i = 0; i < 5; i++){
+            articles.append("<hr>");
+            var story = $("<a>");
+            story.attr({
+                href: response.response.results[i].webUrl,
+                class: "guardian-headline"
+            });
+            var guardianImg = $("<img>");
+            guardianImg.attr({
+                src: response.response.results[i].fields.thumbnail,
+                id: "guardian-img"
+            });
+            story.text(response.response.results[i].fields.headline);
+            articles.append(guardianImg, story);
+        }
+        })
+    }
+    loadNewsDoc();
     searchBtn.on('click', function (event) {
         event.preventDefault();
         guardianSearch = $("#news-search").val().trim();

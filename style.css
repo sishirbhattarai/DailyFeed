@@ -60,6 +60,7 @@ i {
 body {
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 2150px){
@@ -67,4 +68,9 @@ body {
         background-size: auto;
         background-repeat: repeat-y;
     }
+}
+
+.scroll {
+    height: 400px;
+    overflow: auto;
 }

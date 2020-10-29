@@ -1,6 +1,5 @@
 // Our JavaScript goes here
 $(document).ready(function () {
-
     // WeatherBit API
     var icon = $("<i>");
     var tempDiv = $("#temperature");
@@ -24,12 +23,13 @@ $(document).ready(function () {
         method: "GET"
         }).then(function(response){
         console.log(response);
-        for (i = 0; i < 5; i++){
+        for (i = 0; i < 10; i++){
             articles.append("<hr>");
             var story = $("<a>");
             story.attr({
                 href: response.response.results[i].webUrl,
-                class: "guardian-headline"
+                class: "guardian-headline",
+                target: "_blank"
             });
             var guardianImg = $("<img>");
             guardianImg.attr({
@@ -54,12 +54,13 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response);
             console.log(response.response.results[0]);
-            for (i = 0; i < 5; i++) {
+            for (i = 0; i < 10; i++) {
                 articles.append("<hr>");
                 var story = $("<a>");
                 story.attr({
                     href: response.response.results[i].webUrl,
-                    class: "guardian-headline"
+                    class: "guardian-headline",
+                    target: "_blank"
                 });
                 var guardianImg = $("<img>");
                 guardianImg.attr({

@@ -19,7 +19,6 @@ $(document).ready(function () {
     var articles = $("#articles");
     // Covid19API Global Variables
 
-
     searchBtn.on('click', function (event) {
         event.preventDefault();
         guardianSearch = $("#news-search").val().trim();
@@ -105,8 +104,27 @@ $(document).ready(function () {
             weather.append(weatherImg);
             weather.append(response.data[0].weather.description);
             uvDiv.append(uvIcon);
-            uvDiv.append(" UV Index: " + response.data[0].uv.toFixed(1));
+            uvDiv.append(" UV i: " + response.data[0].uv.toFixed(1));
         });
     }
+    var currentTime = moment().hours();
+    console.log(currentTime);
+    function updateTime () {
+        var morningImg = "https://i.pinimg.com/originals/6d/df/89/6ddf89a95cc31286387b11c64c1991a8.jpg";
+        var noonImg = "https://media.istockphoto.com/videos/sun-is-rising-on-clear-sky-hd-video-id462552642?s=640x640";
+        var eveningImg = "https://wallpaperaccess.com/full/429152.jpg";
+        for (let i = currentTime; i < 24; i++) {
+            if (i >= 6 && i < 12){
+                $('#project-name').text("The Morning Feed")
+                $('body').css('background-image', "url(" + morningImg + ")")
+            }else if (i >= 12 && i < 18){
+                $('#project-name').text("The Afternoon Feed")
+                $('body').css('background-image', "url(" + noonImg + ")")
+            }else {
+                $('#project-name').text("The Evening Feed")
+                $('body').css('background-image', "url(" + eveningImg + ")")
+            }
+        }
+    }
+    updateTime();
 })
-

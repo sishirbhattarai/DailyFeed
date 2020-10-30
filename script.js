@@ -133,7 +133,7 @@ $(document).ready(function () {
         userLat = position.coords.latitude;
         userLong = position.coords.longitude;
         $.ajax({
-            url: "http://www.mapquestapi.com/geocoding/v1/reverse?key=jHLf4uATR4fijVkLOmrimhIJE79Xp0kx&location=" + userLat + "," + userLong,
+            url: "https://www.mapquestapi.com/geocoding/v1/reverse?key=jHLf4uATR4fijVkLOmrimhIJE79Xp0kx&location=" + userLat + "," + userLong,
             method: "GET"
         }).then(function (response) {
             var cityIcon = $("<i>");

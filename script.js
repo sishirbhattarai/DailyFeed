@@ -64,8 +64,7 @@ $(document).ready(function () {
                     href: newsHref,
                 });
                 newsLink.append(newsTitle);
-                newsLink.append(deleteBtn);
-                savedArticleDiv.append(newsLink);
+                savedArticleDiv.append(newsLink, deleteBtn);
                 savedArticles.append(savedArticleDiv);
                 savedArticles.append($("<hr>"))
             });

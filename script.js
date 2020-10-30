@@ -51,9 +51,6 @@ $(document).ready(function () {
             };
         });
     };
-    $(".button-outline-primary").on("click", function () {
-       console.log("Hello");
-})
     loadNewsDoc();
     searchBtn.on('click', function (event) {
         event.preventDefault();

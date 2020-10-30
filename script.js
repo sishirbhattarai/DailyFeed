@@ -49,6 +49,10 @@ $(document).ready(function () {
                 articleDiv.append(guardianImg, story, saveBtn);
                 articles.append(articleDiv);
             };
+            $(".btn-outline-primary").on("click", function() {
+                var news = this.parentElement.children[1].href;
+                console.log(news);
+            })
         });
     };
     loadNewsDoc();
@@ -90,6 +94,10 @@ $(document).ready(function () {
                 articleDiv.append(guardianImg, story, saveBtn);
                 articles.append(articleDiv);
             };
+            $(".btn-outline-primary").on("click", function() {
+                var news = this.parentElement.children[1].href;
+                console.log(news);
+            })
         });
     });
 

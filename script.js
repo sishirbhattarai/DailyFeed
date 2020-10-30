@@ -16,10 +16,7 @@ $(document).ready(function () {
     var guardianSearch;
     var searchBtn = $("#search-btn");
     var articles = $("#articles");
-
-
-    // Main methods
-
+    var savedArticles = $("#saved-articles");
     function loadNewsDoc () {
         $.ajax({
         url: "https://content.guardianapis.com/search?show-fields=headline,thumbnail&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e",
@@ -96,6 +93,7 @@ $(document).ready(function () {
         });
     });
 
+
     // Asks permission to get user's location data
     function getLocation() {
         if (navigator.geolocation) {
@@ -120,7 +118,7 @@ $(document).ready(function () {
             cityEl.prepend(cityIcon + " ");
             cityEl.text((response.results[0].locations[0].adminArea5) + ", " + (response.results[0].locations[0].adminArea3));
             console.log(response);
-            getWeather();
+            getWeather()
         });
     };
 
@@ -167,12 +165,11 @@ $(document).ready(function () {
             }else if (i >= 12 && i < 18){
                 $('#project-name').text("The Afternoon Feed")
                 $('body').css('background-image', "url(" + noonImg + ")")
-            }else {
+            }else if (i >= 18 && i < 6) {
                 $('#project-name').text("The Evening Feed")
                 $('body').css('background-image', "url(" + eveningImg + ")")
             }
         }
-    };
+    }
     updateTime();
-
-});
+})

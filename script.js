@@ -28,9 +28,10 @@ $(document).ready(function () {
                 var articleDiv = $("<div>");
                 var saveBtn = $("<button>");
                 var saveIcon = $("<i class=\"fas fa-save\"></i>")
+                articleDiv.attr("class", "clearfix");
                 saveBtn.attr({
                     type: "button",
-                    class: "btn btn-outline-primary",
+                    class: "btn btn-outline-primary saveBtn",
                     style: "float:right;border-color:midnightblue"
                 });
                 saveBtn.append(saveIcon);
@@ -49,12 +50,28 @@ $(document).ready(function () {
                 articleDiv.append(guardianImg, story, saveBtn);
                 articles.append(articleDiv);
             };
-            $(".btn-outline-primary").on("click", function() {
-                var news = this.parentElement.children[1].href;
-                console.log(news);
-            })
+            $(".saveBtn").on("click", function() {
+                var newsHref = this.parentElement.children[1].href;
+                var newsTitle = this.parentElement.children[1].innerHTML;
+                var savedArticleDiv = $("<div>");
+                var newsLink = $("<a>");
+                var deleteBtn = $("<button>");
+                savedArticleDiv.addClass("clearfix");
+                deleteBtn.addClass("btn btn-outline-danger");
+                deleteBtn.attr("style", "float: right");
+                deleteBtn.append("Delete");
+                newsLink.attr({
+                    href: newsHref,
+                });
+                newsLink.append(newsTitle);
+                newsLink.append(deleteBtn);
+                savedArticleDiv.append(newsLink);
+                savedArticles.append(savedArticleDiv);
+                savedArticles.append($("<hr>"))
+            });
         });
     };
+    
     loadNewsDoc();
     searchBtn.on('click', function (event) {
         event.preventDefault();
@@ -95,13 +112,13 @@ $(document).ready(function () {
                 articles.append(articleDiv);
             };
             $(".btn-outline-primary").on("click", function() {
-                var news = this.parentElement.children[1].href;
-                console.log(news);
+                var newsHref = this.parentElement.children[1].href;
+                var newsTitle = this.parentElement.children[1];
+                console.log(newsHref);
+                console.log(newsTitle);
             })
         });
     });
-
-
     // Asks permission to get user's location data
     function getLocation() {
         if (navigator.geolocation) {
@@ -112,7 +129,6 @@ $(document).ready(function () {
             cityEl.text("Geolocation is not supported by the browser.")
         };
     };
-
     // If user gives location permission, coords are sent to mapquest API
     function showPosition(position) {
         userLat = position.coords.latitude;
@@ -129,22 +145,17 @@ $(document).ready(function () {
             getWeather()
         });
     };
-
     getLocation();
-
     // Passes user coords into weather api, returns local weather info
     function getWeather() {
-
         $.ajax({
             url: "https://api.weatherbit.io/v2.0/current?lat=" + userLat + "&lon=" + userLong + "&key=b2da4d28d2ce4023b0d33cbef6a3f959",
             method: "GET"
         }).then(function (response) {
-
             console.log(response);
             console.log("Celsuis temperature: " + response.data[0].temp);
             var tempF = response.data[0].temp * 1.80 + 32;
             console.log("Fahrenheit temperature: " + tempF);
-
             if (tempF < 60) {
                 icon.addClass("fas fa-temperature-low");
                 tempIcon.append(icon)

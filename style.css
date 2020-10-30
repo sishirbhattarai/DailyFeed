@@ -79,3 +79,7 @@ body {
 .fa-save {
     color: midnightblue;
 }
+
+#save-div {
+    margin-bottom: 30px;
+}

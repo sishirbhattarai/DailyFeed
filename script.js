@@ -16,7 +16,6 @@ $(document).ready(function () {
     var guardianSearch;
     var searchBtn = $("#search-btn");
     var articles = $("#articles");
-    // Covid19API Global Variables
     function loadNewsDoc () {
         $.ajax({
         url: "https://content.guardianapis.com/search?show-fields=headline,thumbnail&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e",

@@ -143,7 +143,7 @@ $(document).ready(function () {
             }else if (i >= 12 && i < 18){
                 $('#project-name').text("The Afternoon Feed")
                 $('body').css('background-image', "url(" + noonImg + ")")
-            }else {
+            }else if (i >= 18 && i < 6){
                 $('#project-name').text("The Evening Feed")
                 $('body').css('background-image', "url(" + eveningImg + ")")
             }

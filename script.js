@@ -16,30 +16,44 @@ $(document).ready(function () {
     var guardianSearch;
     var searchBtn = $("#search-btn");
     var articles = $("#articles");
+    var savedArticles = $("#saved-articles");
     function loadNewsDoc () {
         $.ajax({
         url: "https://content.guardianapis.com/search?show-fields=headline,thumbnail&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e",
         method: "GET"
         }).then(function(response){
-        console.log(response);
-        for (i = 0; i < 10; i++){
-            articles.append("<hr>");
-            var story = $("<a>");
-            story.attr({
-                href: response.response.results[i].webUrl,
-                class: "guardian-headline",
-                target: "_blank"
-            });
-            var guardianImg = $("<img>");
-            guardianImg.attr({
-                src: response.response.results[i].fields.thumbnail,
-                id: "guardian-img"
-            });
-            story.text(response.response.results[i].fields.headline);
-            articles.append(guardianImg, story);
-        }
-        })
-    }
+            console.log(response);
+            for (i = 0; i < 10; i++){
+                articles.append("<hr>");
+                var articleDiv = $("<div>");
+                var saveBtn = $("<button>");
+                var saveIcon = $("<i class=\"fas fa-save\"></i>")
+                saveBtn.attr({
+                    type: "button",
+                    class: "btn btn-outline-primary",
+                    style: "float:right;border-color:midnightblue"
+                });
+                saveBtn.append(saveIcon);
+                var story = $("<a>");
+                story.attr({
+                    href: response.response.results[i].webUrl,
+                    class: "guardian-headline",
+                    target: "_blank"
+                });
+                var guardianImg = $("<img>");
+                guardianImg.attr({
+                    src: response.response.results[i].fields.thumbnail,
+                    id: "guardian-img"
+                });
+                story.text(response.response.results[i].fields.headline);
+                articleDiv.append(guardianImg, story, saveBtn);
+                articles.append(articleDiv);
+            };
+        });
+    };
+    $(".button-outline-primary").on("click", function () {
+       console.log("Hello");
+})
     loadNewsDoc();
     searchBtn.on('click', function (event) {
         event.preventDefault();
@@ -55,6 +69,15 @@ $(document).ready(function () {
             console.log(response.response.results[0]);
             for (i = 0; i < 10; i++) {
                 articles.append("<hr>");
+                var articleDiv = $("<div>");
+                var saveBtn = $("<button>");
+                var saveIcon = $("<i class=\"fas fa-save\"></i>")
+                saveBtn.attr({
+                    type: "button",
+                    class: "btn btn-outline-primary",
+                    style: "float:right;border-color:midnightblue"
+                });
+                saveBtn.append(saveIcon);
                 var story = $("<a>");
                 story.attr({
                     href: response.response.results[i].webUrl,
@@ -67,10 +90,12 @@ $(document).ready(function () {
                     id: "guardian-img"
                 });
                 story.text(response.response.results[i].fields.headline);
-                articles.append(guardianImg, story);
-            }
+                articleDiv.append(guardianImg, story, saveBtn);
+                articles.append(articleDiv);
+            };
         });
     });
+
 
     // Asks permission to get user's location data
     function getLocation() {
@@ -143,7 +168,7 @@ $(document).ready(function () {
             }else if (i >= 12 && i < 18){
                 $('#project-name').text("The Afternoon Feed")
                 $('body').css('background-image', "url(" + noonImg + ")")
-            }else if (i >= 18 && i < 6){
+            }else if (i >= 18 && i < 6) {
                 $('#project-name').text("The Evening Feed")
                 $('body').css('background-image', "url(" + eveningImg + ")")
             }

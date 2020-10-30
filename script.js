@@ -171,7 +171,7 @@ $(document).ready(function () {
     console.log(currentTime);
     function updateTime () {
         var morningImg = "https://i.pinimg.com/originals/6d/df/89/6ddf89a95cc31286387b11c64c1991a8.jpg";
-        var noonImg = "https://media.istockphoto.com/videos/sun-is-rising-on-clear-sky-hd-video-id462552642?s=640x640";
+        var noonImg = "https://wallpapercave.com/wp/wp2647032.jpg";
         var eveningImg = "https://wallpaperaccess.com/full/429152.jpg";
         for (let i = currentTime; i < 24; i++) {
             if (i >= 6 && i < 12){

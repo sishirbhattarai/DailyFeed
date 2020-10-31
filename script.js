@@ -17,6 +17,7 @@ $(document).ready(function () {
     var searchBtn = $("#search-btn");
     var articles = $("#articles");
     var savedArticles = $("#saved-articles");
+    var renderSave = JSON.parse(localStorage.getItem("savearticle")) || [];
     function loadNewsDoc () {
         $.ajax({
         url: "https://content.guardianapis.com/search?show-fields=headline,thumbnail&api-key=199bdec0-409f-48d7-a79a-6ff10791c23e",
@@ -51,12 +52,14 @@ $(document).ready(function () {
                 articles.append(articleDiv);
             };
             $(".saveBtn").on("click", function() {
+                savedArticles.push(renderSave);
+                localStorage.setItem("savearticle", JSON.stringify(savedArticles));
                 var newsHref = this.parentElement.children[1].href;
                 var newsTitle = this.parentElement.children[1].innerHTML;
                 var savedArticleDiv = $("<div>");
                 var newsLink = $("<a>");
                 var deleteBtn = $("<button>");
-                savedArticleDiv.addClass("clearfix");
+                savedArticleDiv.addClass("clearfix saved-article");
                 deleteBtn.addClass("btn btn-outline-danger");
                 deleteBtn.attr("style", "float: right");
                 deleteBtn.append("Delete");
@@ -67,6 +70,9 @@ $(document).ready(function () {
                 savedArticleDiv.append(newsLink, deleteBtn);
                 savedArticles.append(savedArticleDiv);
                 savedArticles.append($("<hr>"))
+                $(".btn-outline-danger").on("click", function () {
+                    this.parentElement.remove();
+                });
             });
         });
     };
@@ -110,12 +116,29 @@ $(document).ready(function () {
                 articleDiv.append(guardianImg, story, saveBtn);
                 articles.append(articleDiv);
             };
-            $(".btn-outline-primary").on("click", function() {
+            $(".saveBtn").on("click", function() {
+                savedArticles.push(renderSave);
+                localStorage.setItem("savearticle", JSON.stringify(savedArticles));
                 var newsHref = this.parentElement.children[1].href;
-                var newsTitle = this.parentElement.children[1];
-                console.log(newsHref);
-                console.log(newsTitle);
-            })
+                var newsTitle = this.parentElement.children[1].innerHTML;
+                var savedArticleDiv = $("<div>");
+                var newsLink = $("<a>");
+                var deleteBtn = $("<button>");
+                savedArticleDiv.addClass("clearfix saved-article");
+                deleteBtn.addClass("btn btn-outline-danger");
+                deleteBtn.attr("style", "float: right");
+                deleteBtn.append("Delete");
+                newsLink.attr({
+                    href: newsHref,
+                });
+                newsLink.append(newsTitle);
+                savedArticleDiv.append(newsLink, deleteBtn);
+                savedArticles.append(savedArticleDiv);
+                savedArticles.append($("<hr>"));
+                $(".btn-outline-danger").on("click", function () {
+                    this.parentElement.remove();
+                });
+            });
         });
     });
     // Asks permission to get user's location data

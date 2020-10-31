@@ -71,6 +71,7 @@ $(document).ready(function () {
                 savedArticles.append(savedArticleDiv);
                 savedArticles.append($("<hr>"))
                 $(".btn-outline-danger").on("click", function () {
+                    this.parentElement.nextElementSibling.remove();
                     this.parentElement.remove();
                 });
             });
@@ -136,6 +137,7 @@ $(document).ready(function () {
                 savedArticles.append(savedArticleDiv);
                 savedArticles.append($("<hr>"));
                 $(".btn-outline-danger").on("click", function () {
+                    this.parentElement.nextElementSibling.remove();
                     this.parentElement.remove();
                 });
             });

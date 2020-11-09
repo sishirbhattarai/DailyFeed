@@ -3,6 +3,10 @@ Daily Feed
 
 - As a traveller, I want to read the local news, and get the latest weather update all in one page.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 51f85615eca4009c301a80f4832906370bae342a
 Site is published at https://sishirbhattarai.github.io/DailyFeed/
 
 -User allow browser to use the current geo-location. 

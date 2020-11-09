@@ -185,7 +185,7 @@ $(document).ready(function () {
                 tempIcon.append(icon)
             };
             tempDiv.append(" " + tempF.toFixed(0) + "° F");
-            weatherImg.attr("src", "icons/" + response.data[0].weather.icon + ".png");
+            weatherImg.attr("src", "./assets/icons/" + response.data[0].weather.icon + ".png");
             weather.append(weatherImg);
             weather.append(response.data[0].weather.description);
             uvDiv.append(uvIcon);

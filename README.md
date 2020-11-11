@@ -4,7 +4,9 @@
 
 # User Story
 
-As a user, I need an app which shows current local weather as well as any latest news on searching all in one page.. 
+As a user, I need an app which shows current local weather as well as any latest news on searching all in one page.
+As a user, I want to save news if needed.
+As a user, I want to delete saved news once read.
 
 # Technology Used:
 -HTML, CSS, JScript, JQUERY

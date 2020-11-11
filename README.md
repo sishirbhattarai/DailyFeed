@@ -1,11 +1,16 @@
-Daily Feed
+# Live Deployed Site:
+
+ https://sishirbhattarai.github.io/DailyFeed/
+
+# User Story
+
+As a user, I need an app which shows current local weather as well as any latest news on searching all in one page.. 
+
+# Technology Used:
 
 - This project will feature MapQuestAPI, GuardianAPI, and WeatherBit API to get the best relevant news and the weather. This will be a breakfast companion-esq app.
 
-- As a traveller, I want to read the local news, and get the latest weather update all in one page.
-
-Site is published at https://sishirbhattarai.github.io/DailyFeed/
-
+# Test:
 -User allow browser to use the current geo-location.
 ![](./assets/icons/Capture1.PNG)
 
@@ -14,3 +19,7 @@ Site is published at https://sishirbhattarai.github.io/DailyFeed/
 
 - User can also delete button to delete news after saving it.
   ![](./assets/icons/Capture3.PNG)
+
+# Contributors:
+
+Name: Sishir Bhattarai (sishir.bhattarai@outlook.com), Jack Kempton (jckkempton@gmail.com), Jeffrey Woods (jeffreytwoods2@icloud.com)

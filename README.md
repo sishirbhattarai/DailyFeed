@@ -7,8 +7,8 @@
 As a user, I need an app which shows current local weather as well as any latest news on searching all in one page.. 
 
 # Technology Used:
-
-- This project will feature MapQuestAPI, GuardianAPI, and WeatherBit API to get the best relevant news and the weather. This will be a breakfast companion-esq app.
+-HTML, CSS, JScript, JQUERY
+- This project features MapQuestAPI, GuardianAPI, and WeatherBit API to get the best relevant news and the weather. This will be a breakfast companion-esq app.
 
 # Test:
 -User allow browser to use the current geo-location.
